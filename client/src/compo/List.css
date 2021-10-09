@@ -1,0 +1,22 @@
+
+
+.list
+{
+    border: 1px lightgray solid;
+    border-radius: 10px;
+    width: 400px;
+    height: 500px;
+    margin: auto;
+    margin-top:15px;
+    background-color: rgb(190, 244, 190);
+    overflow-y: scroll;
+}
+
+.list_item
+{
+    border: 1px lightgray solid;
+    border-radius: 10px;
+    background-color: green;
+    margin-top: 0px;
+    padding-bottom: 10px;
+}
