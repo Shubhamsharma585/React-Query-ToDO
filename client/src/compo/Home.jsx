@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useMutation } from "react-query";
+import { QueryClient, useMutation, useQueryClient } from "react-query";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import List from "./List";
@@ -13,14 +13,19 @@ const handleSubmit = async(todo) => {
 }
 
 
-
+ 
 function Home() {
 
-    const [todo, setTodo] = useState("")
-    const {status, mutate} = useMutation(handleSubmit)
-  
-    console.log(status)
+  const queryClient =  useQueryClient();
 
+    const [todo, setTodo] = useState("")
+    const {status, mutate} = useMutation(handleSubmit, {
+      onSuccess: () => {
+        queryClient.invalidateQueries("GetData")
+        setTodo("")
+      }
+    });
+  
 
   return (
     <div>
@@ -29,6 +34,7 @@ function Home() {
         id="outlined-basic"
         label="Type To Do Here"
         variant="outlined"
+        type="text"
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
       />
@@ -40,6 +46,7 @@ function Home() {
       })}>
         Submit
       </Button>
+ 
       <List/>
     </div>
   );

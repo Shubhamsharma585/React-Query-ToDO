@@ -5,7 +5,7 @@ import Home from './compo/Home';
 function App() {
   return (
     <div className="App">
-       <Home/>
+       <Home/> 
     </div>
   );
 }
